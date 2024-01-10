@@ -6,6 +6,9 @@ import com.employee.Services.EmployeeService;
 import com.employee.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
+
+import java.util.List;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -16,7 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee createEmp(EmployeeDto dto) {
+    public EmployeeDto createEmp(EmployeeDto dto) {
 
         Employee  emp = new Employee();
         emp.setEmpName(dto.getEmpName());
@@ -33,6 +36,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         empDto.setDepartment(save.getDepartment());
         empDto.setWorkingStatus(save.getWorkingStatus());
         empDto.setMobile(save.getMobile());
-        return null;
+        return empDto;
+    }
+
+    @Override
+    public List<Employee> getALlEmployee() {
+        List<Employee> getAll = employeeRepository.findAll();
+        return getAll;
+
+
+    }
+
+    @Override
+    public void deleteById( long id) {
+        employeeRepository.deleteById(id);
     }
 }

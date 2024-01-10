@@ -18,7 +18,7 @@ public class Employee {
     private long empId;
     private String empName;
     private String empAddress;
-    private String Department;
+    private String department;
     private Boolean workingStatus;
     private long mobile;
 
