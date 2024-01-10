@@ -10,7 +10,12 @@ import java.util.List;
 public interface EmployeeService {
 
     public EmployeeDto createEmp(EmployeeDto dto);
+
     public List<Employee> getALlEmployee();
 
     public void deleteById( long id);
+
+    public EmployeeDto updateById(long id , EmployeeDto dto);
+
+
 }

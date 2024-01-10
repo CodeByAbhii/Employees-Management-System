@@ -39,4 +39,10 @@ public class EmployeeController {
         employeeService.deleteById(id);
         return  new ResponseEntity<>("Record is deleted!!" , HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @PutMapping
+    public ResponseEntity<?> updateRecord(@RequestParam long id , EmployeeDto dto){
+        EmployeeDto employee = employeeService.updateById(id, dto);
+        return new ResponseEntity<>(employee , HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
