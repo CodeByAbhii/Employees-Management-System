@@ -2,6 +2,7 @@ package com.employee.Services.Impl;
 
 import com.employee.Dto.EmployeeDto;
 import com.employee.Entity.Employee;
+import com.employee.Exception.ResourceNotFoundException;
 import com.employee.Services.EmployeeService;
 import com.employee.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
@@ -72,5 +73,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         ed.setMobile(save.getMobile());
         return ed;
 
+    }
+
+    @Override
+    public EmployeeDto getEmployeeById(long id) {
+      Employee employee =  employeeRepository.findById(id).orElseThrow(
+
+                ()->new ResourceNotFoundException("Employee Not Found By this Id :"+id)
+
+        );
+        EmployeeDto dto  = new EmployeeDto();
+        dto.setEmpName(employee .getEmpName());
+        dto.setEmpAddress(employee .getEmpAddress());
+        dto.setDepartment(employee .getDepartment());
+        dto.setWorkingStatus(employee .getWorkingStatus());
+        dto.setMobile(employee .getMobile());
+        return dto;
     }
 }
